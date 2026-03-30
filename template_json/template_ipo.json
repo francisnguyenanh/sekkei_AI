@@ -1,0 +1,1238 @@
+{
+  "sheet_name": "IPO図",
+  "global_config": {
+    "default_font": {
+      "name": "Meiryo UI",
+      "size": 9.0
+    },
+    "column_widths": {
+      "A": 16.0,
+      "B": 18.0,
+      "C": 30.0,
+      "D": 18.0,
+      "E": 3.0
+    },
+    "row_heights": {
+      "1": 20.0,
+      "2": 18.0,
+      "3": 18.0,
+      "4": 18.0,
+      "5": 15.0,
+      "6": 15.0,
+      "7": 15.0
+    }
+  },
+  "styles": {
+    "header_title": {
+      "fill": "1F4E79",
+      "font_color": "FFFFFF",
+      "font_size": 11.0,
+      "font_name": "Meiryo UI",
+      "bold": true,
+      "align_h": "center",
+      "align_v": "center",
+      "border": null,
+      "wrap_text": null
+    },
+    "header_label": {
+      "fill": "D6E4F0",
+      "font_color": "000000",
+      "font_size": 9.0,
+      "font_name": "Meiryo UI",
+      "bold": true,
+      "align_h": "center",
+      "align_v": "center",
+      "border": "all_thin",
+      "wrap_text": null
+    },
+    "header_value": {
+      "fill": null,
+      "font_color": null,
+      "font_size": 9.0,
+      "font_name": "Meiryo UI",
+      "bold": false,
+      "align_h": "left",
+      "align_v": "center",
+      "border": "all_thin",
+      "wrap_text": null
+    },
+    "section_title": {
+      "fill": "BDD7EE",
+      "font_color": "000000",
+      "font_size": 9.0,
+      "font_name": "Meiryo UI",
+      "bold": true,
+      "align_h": "left",
+      "align_v": "center",
+      "border": "all_thin",
+      "wrap_text": null
+    },
+    "col_header": {
+      "fill": "9BC2E6",
+      "font_color": "000000",
+      "font_size": 9.0,
+      "font_name": "Meiryo UI",
+      "bold": true,
+      "align_h": "center",
+      "align_v": "center",
+      "border": "all_thin",
+      "wrap_text": true
+    },
+    "data_cell": {
+      "fill": null,
+      "font_color": null,
+      "font_size": 9.0,
+      "font_name": "Meiryo UI",
+      "bold": false,
+      "align_h": "left",
+      "align_v": "center",
+      "border": "all_thin",
+      "wrap_text": null
+    },
+    "data_cell_center": {
+      "fill": null,
+      "font_color": null,
+      "font_size": 9.0,
+      "font_name": "Meiryo UI",
+      "bold": false,
+      "align_h": "center",
+      "align_v": "center",
+      "border": "all_thin",
+      "wrap_text": null
+    },
+    "note_cell": {
+      "fill": "FFF2CC",
+      "font_color": "000000",
+      "font_size": 8.0,
+      "font_name": "Meiryo UI",
+      "bold": false,
+      "align_h": "left",
+      "align_v": "top",
+      "border": "all_thin",
+      "wrap_text": true
+    },
+    "ipo_input": {
+      "fill": "D9EAD3",
+      "font_color": "000000",
+      "font_size": 9.0,
+      "font_name": "Meiryo UI",
+      "bold": false,
+      "align_h": "left",
+      "align_v": "center",
+      "border": "all_thin",
+      "wrap_text": true
+    },
+    "ipo_process": {
+      "fill": "FFF2CC",
+      "font_color": "000000",
+      "font_size": 9.0,
+      "font_name": "Meiryo UI",
+      "bold": false,
+      "align_h": "left",
+      "align_v": "top",
+      "border": "all_thin",
+      "wrap_text": true
+    },
+    "ipo_output": {
+      "fill": "FCE5CD",
+      "font_color": "000000",
+      "font_size": 9.0,
+      "font_name": "Meiryo UI",
+      "bold": false,
+      "align_h": "left",
+      "align_v": "center",
+      "border": "all_thin",
+      "wrap_text": true
+    },
+    "ipo_col_input": {
+      "fill": "6AA84F",
+      "font_color": "FFFFFF",
+      "font_size": 9.0,
+      "font_name": "Meiryo UI",
+      "bold": true,
+      "align_h": "center",
+      "align_v": "center",
+      "border": "all_thin",
+      "wrap_text": null
+    },
+    "ipo_col_process": {
+      "fill": "F1C232",
+      "font_color": "000000",
+      "font_size": 9.0,
+      "font_name": "Meiryo UI",
+      "bold": true,
+      "align_h": "center",
+      "align_v": "center",
+      "border": "all_thin",
+      "wrap_text": null
+    },
+    "ipo_col_output": {
+      "fill": "E06666",
+      "font_color": "FFFFFF",
+      "font_size": 9.0,
+      "font_name": "Meiryo UI",
+      "bold": true,
+      "align_h": "center",
+      "align_v": "center",
+      "border": "all_thin",
+      "wrap_text": null
+    }
+  },
+  "layout_blocks": [
+    {
+      "range": "A1:E1",
+      "style": "header_title",
+      "merge": true,
+      "static_text": "項目定義書_IPO図"
+    },
+    {
+      "range": "A2:B2",
+      "style": "header_label",
+      "merge": true,
+      "static_text": "シリーズ名"
+    },
+    {
+      "range": "C2:C2",
+      "style": "header_value",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "D2:E2",
+      "style": "header_value",
+      "merge": true,
+      "static_text": null
+    },
+    {
+      "range": "A3:A3",
+      "style": "header_label",
+      "merge": false,
+      "static_text": "画面ID"
+    },
+    {
+      "range": "B3:B3",
+      "style": "header_value",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "C3:C3",
+      "style": "header_label",
+      "merge": false,
+      "static_text": "画面名"
+    },
+    {
+      "range": "D3:E3",
+      "style": "header_value",
+      "merge": true,
+      "static_text": null
+    },
+    {
+      "range": "A4:A4",
+      "style": "header_label",
+      "merge": false,
+      "static_text": "案件番号"
+    },
+    {
+      "range": "B4:B4",
+      "style": "header_value",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "C4:C4",
+      "style": "header_label",
+      "merge": false,
+      "static_text": "顧客名"
+    },
+    {
+      "range": "D4:E4",
+      "style": "header_value",
+      "merge": true,
+      "static_text": null
+    },
+    {
+      "range": "A5:A5",
+      "style": "header_label",
+      "merge": false,
+      "static_text": "版数"
+    },
+    {
+      "range": "B5:B5",
+      "style": "header_value",
+      "merge": false,
+      "static_text": "初回"
+    },
+    {
+      "range": "C5:C5",
+      "style": "header_label",
+      "merge": false,
+      "static_text": "作成日"
+    },
+    {
+      "range": "D5:E5",
+      "style": "header_value",
+      "merge": true,
+      "static_text": null
+    },
+    {
+      "range": "A6:A6",
+      "style": "header_label",
+      "merge": false,
+      "static_text": "要件概要"
+    },
+    {
+      "range": "B6:E6",
+      "style": "note_cell",
+      "merge": true,
+      "static_text": null
+    },
+    {
+      "range": "A7:E7",
+      "style": "section_title",
+      "merge": true,
+      "static_text": "【IPO図（Input-Process-Output）】"
+    },
+    {
+      "range": "A8:A8",
+      "style": "ipo_col_input",
+      "merge": false,
+      "static_text": "入力画面・入力項目"
+    },
+    {
+      "range": "B8:B8",
+      "style": "ipo_col_input",
+      "merge": false,
+      "static_text": "入力項目"
+    },
+    {
+      "range": "C8:C8",
+      "style": "ipo_col_process",
+      "merge": false,
+      "static_text": "プロセス（処理内容）"
+    },
+    {
+      "range": "D8:D8",
+      "style": "ipo_col_output",
+      "merge": false,
+      "static_text": "出力項目"
+    },
+    {
+      "range": "E8:E8",
+      "style": "col_header",
+      "merge": false,
+      "static_text": "備考"
+    },
+    {
+      "range": "A9:A9",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "B9:B9",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "C9:C9",
+      "style": "ipo_process",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "D9:D9",
+      "style": "ipo_output",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "E9:E9",
+      "style": "note_cell",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "A10:A10",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "B10:B10",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "C10:C10",
+      "style": "ipo_process",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "D10:D10",
+      "style": "ipo_output",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "E10:E10",
+      "style": "note_cell",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "A11:A11",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "B11:B11",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "C11:C11",
+      "style": "ipo_process",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "D11:D11",
+      "style": "ipo_output",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "E11:E11",
+      "style": "note_cell",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "A12:A12",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "B12:B12",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "C12:C12",
+      "style": "ipo_process",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "D12:D12",
+      "style": "ipo_output",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "E12:E12",
+      "style": "note_cell",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "A13:A13",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "B13:B13",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "C13:C13",
+      "style": "ipo_process",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "D13:D13",
+      "style": "ipo_output",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "E13:E13",
+      "style": "note_cell",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "A14:A14",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "B14:B14",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "C14:C14",
+      "style": "ipo_process",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "D14:D14",
+      "style": "ipo_output",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "E14:E14",
+      "style": "note_cell",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "A15:A15",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "B15:B15",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "C15:C15",
+      "style": "ipo_process",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "D15:D15",
+      "style": "ipo_output",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "E15:E15",
+      "style": "note_cell",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "A16:A16",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "B16:B16",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "C16:C16",
+      "style": "ipo_process",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "D16:D16",
+      "style": "ipo_output",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "E16:E16",
+      "style": "note_cell",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "A17:A17",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "B17:B17",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "C17:C17",
+      "style": "ipo_process",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "D17:D17",
+      "style": "ipo_output",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "E17:E17",
+      "style": "note_cell",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "A18:A18",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "B18:B18",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "C18:C18",
+      "style": "ipo_process",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "D18:D18",
+      "style": "ipo_output",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "E18:E18",
+      "style": "note_cell",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "A19:A19",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "B19:B19",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "C19:C19",
+      "style": "ipo_process",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "D19:D19",
+      "style": "ipo_output",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "E19:E19",
+      "style": "note_cell",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "A20:A20",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "B20:B20",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "C20:C20",
+      "style": "ipo_process",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "D20:D20",
+      "style": "ipo_output",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "E20:E20",
+      "style": "note_cell",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "A21:A21",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "B21:B21",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "C21:C21",
+      "style": "ipo_process",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "D21:D21",
+      "style": "ipo_output",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "E21:E21",
+      "style": "note_cell",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "A22:A22",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "B22:B22",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "C22:C22",
+      "style": "ipo_process",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "D22:D22",
+      "style": "ipo_output",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "E22:E22",
+      "style": "note_cell",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "A23:A23",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "B23:B23",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "C23:C23",
+      "style": "ipo_process",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "D23:D23",
+      "style": "ipo_output",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "E23:E23",
+      "style": "note_cell",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "A24:A24",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "B24:B24",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "C24:C24",
+      "style": "ipo_process",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "D24:D24",
+      "style": "ipo_output",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "E24:E24",
+      "style": "note_cell",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "A25:A25",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "B25:B25",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "C25:C25",
+      "style": "ipo_process",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "D25:D25",
+      "style": "ipo_output",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "E25:E25",
+      "style": "note_cell",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "A26:A26",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "B26:B26",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "C26:C26",
+      "style": "ipo_process",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "D26:D26",
+      "style": "ipo_output",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "E26:E26",
+      "style": "note_cell",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "A27:A27",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "B27:B27",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "C27:C27",
+      "style": "ipo_process",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "D27:D27",
+      "style": "ipo_output",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "E27:E27",
+      "style": "note_cell",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "A28:A28",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "B28:B28",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "C28:C28",
+      "style": "ipo_process",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "D28:D28",
+      "style": "ipo_output",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "E28:E28",
+      "style": "note_cell",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "A29:A29",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "B29:B29",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "C29:C29",
+      "style": "ipo_process",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "D29:D29",
+      "style": "ipo_output",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "E29:E29",
+      "style": "note_cell",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "A30:A30",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "B30:B30",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "C30:C30",
+      "style": "ipo_process",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "D30:D30",
+      "style": "ipo_output",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "E30:E30",
+      "style": "note_cell",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "A31:A31",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "B31:B31",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "C31:C31",
+      "style": "ipo_process",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "D31:D31",
+      "style": "ipo_output",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "E31:E31",
+      "style": "note_cell",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "A32:A32",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "B32:B32",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "C32:C32",
+      "style": "ipo_process",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "D32:D32",
+      "style": "ipo_output",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "E32:E32",
+      "style": "note_cell",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "A33:A33",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "B33:B33",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "C33:C33",
+      "style": "ipo_process",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "D33:D33",
+      "style": "ipo_output",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "E33:E33",
+      "style": "note_cell",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "A34:A34",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "B34:B34",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "C34:C34",
+      "style": "ipo_process",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "D34:D34",
+      "style": "ipo_output",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "E34:E34",
+      "style": "note_cell",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "A35:A35",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "B35:B35",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "C35:C35",
+      "style": "ipo_process",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "D35:D35",
+      "style": "ipo_output",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "E35:E35",
+      "style": "note_cell",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "A36:A36",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "B36:B36",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "C36:C36",
+      "style": "ipo_process",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "D36:D36",
+      "style": "ipo_output",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "E36:E36",
+      "style": "note_cell",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "A37:A37",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "B37:B37",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "C37:C37",
+      "style": "ipo_process",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "D37:D37",
+      "style": "ipo_output",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "E37:E37",
+      "style": "note_cell",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "A38:A38",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "B38:B38",
+      "style": "ipo_input",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "C38:C38",
+      "style": "ipo_process",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "D38:D38",
+      "style": "ipo_output",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "E38:E38",
+      "style": "note_cell",
+      "merge": false,
+      "static_text": null
+    }
+  ],
+  "mapping_anchors": {
+    "system_name": "C2",
+    "project_number": "B4",
+    "customer_name": "D4",
+    "screen_id": "B3",
+    "screen_name": "D3",
+    "version": "B5",
+    "create_date": "D5",
+    "requirements": "B6",
+    "ipo_table_start": "A9"
+  }
+}

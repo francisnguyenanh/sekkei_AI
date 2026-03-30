@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sekkei AI — Excel Generator</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <style>
+    body { background: #f0f2f5; }
+    .navbar-brand { font-weight: 700; letter-spacing: 1px; }
+    .card { border: none; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+    .card-header { border-radius: 12px 12px 0 0 !important; font-weight: 600; }
+    textarea.code-editor {
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 13px;
+      min-height: 280px;
+      background: #1e1e2e;
+      color: #cdd6f4;
+      border: 1px solid #44475a;
+      border-radius: 8px;
+      resize: vertical;
+    }
+    textarea.code-editor:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px #6272a4;
+      border-color: #6272a4;
+    }
+    .health-badge { font-size: 0.9rem; }
+    .result-box {
+      background: #1e1e2e;
+      color: #cdd6f4;
+      font-family: monospace;
+      font-size: 13px;
+      border-radius: 8px;
+      padding: 12px;
+      min-height: 60px;
+      max-height: 200px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+    }
+    #healthStatus { transition: all 0.3s; }
+
+    /* Template anchor badges */
+    .anchor-badge-single { font-size: 0.75rem; }
+    .anchor-badge-table  { font-size: 0.75rem; }
+
+    /* Logic preview table */
+    .logic-preview-table { font-size: 12px; }
+    .logic-preview-table td { max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+    /* Step cards in AI Prompt tab */
+    .step-card { border-left: 4px solid #6f42c1; }
+
+    /* Generated prompt textarea */
+    #generatedPrompt { min-height: 340px; background: #1a1a2e; color: #e0aaff; }
+
+    /* Disabled generate button state */
+    #btnGenerateExcel:disabled { opacity: 0.5; cursor: not-allowed; }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-dark bg-dark mb-4">
+  <div class="container">
+    <span class="navbar-brand"><i class="bi bi-file-earmark-spreadsheet me-2"></i>Sekkei AI</span>
+    <div class="d-flex align-items-center gap-3">
+      <span class="text-secondary small">Excel Generator API</span>
+      <button id="btnHealth" class="btn btn-sm btn-outline-light" onclick="checkHealth()">
+        <i class="bi bi-heart-pulse me-1"></i>Health Check
+      </button>
+      <span id="healthStatus" class="badge bg-secondary health-badge">Unknown</span>
+    </div>
+  </div>
+</nav>
+
+<div class="container pb-5">
+
+  <!-- Header -->
+  <div class="row mb-4">
+    <div class="col">
+      <h4 class="fw-bold mb-1"><i class="bi bi-grid-fill text-primary me-2"></i>API Dashboard</h4>
+      <p class="text-muted mb-0">Kết nối và kiểm thử các chức năng sinh file Excel từ template JSON</p>
+    </div>
+  </div>
+
+  <!-- Info Cards -->
+  <div class="row g-3 mb-4">
+    <div class="col-md-4">
+      <div class="card h-100">
+        <div class="card-body text-center py-4">
+          <i class="bi bi-file-earmark-excel fs-1 text-success"></i>
+          <div class="fw-semibold mt-2">Single Sheet</div>
+          <div class="text-muted small">POST /api/v1/generate-excel</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card h-100">
+        <div class="card-body text-center py-4">
+          <i class="bi bi-collection fs-1 text-primary"></i>
+          <div class="fw-semibold mt-2">Multi Sheet</div>
+          <div class="text-muted small">POST /api/v1/generate-excel-multi</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card h-100">
+        <div class="card-body text-center py-4">
+          <i class="bi bi-activity fs-1 text-warning"></i>
+          <div class="fw-semibold mt-2">Health Check</div>
+          <div class="text-muted small">GET /health</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <ul class="nav nav-tabs mb-0" id="mainTab" role="tablist">
+    <li class="nav-item">
+      <button class="nav-link active" id="tab-single" data-bs-toggle="tab" data-bs-target="#panel-single" type="button">
+        <i class="bi bi-file-earmark-excel me-1"></i>Single Sheet
+      </button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link" id="tab-multi" data-bs-toggle="tab" data-bs-target="#panel-multi" type="button">
+        <i class="bi bi-collection me-1"></i>Multi Sheet
+      </button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link" id="tab-templates" data-bs-toggle="tab" data-bs-target="#panel-templates" type="button">
+        <i class="bi bi-folder2-open me-1"></i>Templates
+      </button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link" id="tab-prompt" data-bs-toggle="tab" data-bs-target="#panel-prompt" type="button">
+        <i class="bi bi-robot me-1"></i>AI Prompt
+      </button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link" id="tab-generate" data-bs-toggle="tab" data-bs-target="#panel-generate" type="button">
+        <i class="bi bi-lightning-charge-fill me-1"></i>Generate
+      </button>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+
+    <!-- Single Sheet Panel -->
+    <div class="tab-pane fade show active" id="panel-single">
+      <div class="card" style="border-radius: 0 12px 12px 12px;">
+        <div class="card-header bg-success text-white">
+          <i class="bi bi-send me-1"></i>Generate Excel — Single Sheet
+        </div>
+        <div class="card-body">
+          <div class="mb-3">
+            <label class="form-label fw-semibold">JSON Payload <span class="text-danger">*</span></label>
+            <textarea id="singlePayload" class="code-editor form-control" spellcheck="false"></textarea>
+          </div>
+          <div class="d-flex gap-2 mb-3">
+            <button class="btn btn-success" onclick="generateSingle()">
+              <i class="bi bi-download me-1"></i>Generate &amp; Download
+            </button>
+            <button class="btn btn-outline-secondary" onclick="loadSampleSingle()">
+              <i class="bi bi-clipboard-data me-1"></i>Load Sample
+            </button>
+            <button class="btn btn-outline-danger" onclick="clearPayload('singlePayload','singleResult')">
+              <i class="bi bi-trash me-1"></i>Clear
+            </button>
+          </div>
+          <div id="singleSpinner" class="d-none mb-2">
+            <div class="spinner-border spinner-border-sm text-success me-2"></div>
+            <span class="text-muted small">Đang xử lý...</span>
+          </div>
+          <div id="singleResult" class="result-box d-none"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Multi Sheet Panel -->
+    <div class="tab-pane fade" id="panel-multi">
+      <div class="card" style="border-radius: 0 12px 12px 12px;">
+        <div class="card-header bg-primary text-white">
+          <i class="bi bi-send me-1"></i>Generate Excel — Multi Sheet
+        </div>
+        <div class="card-body">
+          <div class="mb-2">
+            <label class="form-label fw-semibold">Filename (tùy chọn)</label>
+            <input type="text" id="multiFilename" class="form-control form-control-sm w-25"
+              placeholder="output_multi.xlsx" style="display:inline-block;" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-semibold">JSON Payload <span class="text-danger">*</span></label>
+            <textarea id="multiPayload" class="code-editor form-control" spellcheck="false"></textarea>
+          </div>
+          <div class="d-flex gap-2 mb-3">
+            <button class="btn btn-primary" onclick="generateMulti()">
+              <i class="bi bi-download me-1"></i>Generate &amp; Download
+            </button>
+            <button class="btn btn-outline-secondary" onclick="loadSampleMulti()">
+              <i class="bi bi-clipboard-data me-1"></i>Load Sample
+            </button>
+            <button class="btn btn-outline-danger" onclick="clearPayload('multiPayload','multiResult')">
+              <i class="bi bi-trash me-1"></i>Clear
+            </button>
+          </div>
+          <div id="multiSpinner" class="d-none mb-2">
+            <div class="spinner-border spinner-border-sm text-primary me-2"></div>
+            <span class="text-muted small">Đang xử lý...</span>
+          </div>
+          <div id="multiResult" class="result-box d-none"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Templates Panel -->
+    <div class="tab-pane fade" id="panel-templates">
+      <div class="card" style="border-radius: 0 12px 12px 12px;">
+        <div class="card-header bg-dark text-white">
+          <i class="bi bi-folder2-open me-1"></i>Import JSON Template
+        </div>
+        <div class="card-body">
+          <div class="row g-3 mb-3">
+            <div class="col-md-5">
+              <label class="form-label fw-semibold">Chọn file JSON Template</label>
+              <input type="file" id="templateFileInput" class="form-control" accept=".json" />
+            </div>
+            <div class="col-md-4">
+              <label class="form-label fw-semibold">Tên Template</label>
+              <input type="text" id="templateNameInput" class="form-control" placeholder="Ví dụ: menu" />
+            </div>
+            <div class="col-md-3 d-flex align-items-end">
+              <button class="btn btn-dark w-100" onclick="importTemplate()">
+                <i class="bi bi-upload me-1"></i>Import Template
+              </button>
+            </div>
+          </div>
+          <div id="templateImportSpinner" class="d-none mb-2">
+            <div class="spinner-border spinner-border-sm text-dark me-2"></div>
+            <span class="text-muted small">Đang import...</span>
+          </div>
+          <div id="templateImportResult" class="result-box d-none mb-3"></div>
+
+          <hr />
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span class="fw-semibold"><i class="bi bi-list-ul me-1"></i>Templates đã lưu</span>
+            <button class="btn btn-sm btn-outline-secondary" onclick="refreshTemplateList()">
+              <i class="bi bi-arrow-clockwise"></i> Refresh
+            </button>
+          </div>
+          <div id="templateTableWrapper">
+            <div class="text-muted small">Chưa có template nào.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI Prompt Panel -->
+    <div class="tab-pane fade" id="panel-prompt">
+      <div class="card" style="border-radius: 0 12px 12px 12px; border-top: 4px solid #6f42c1;">
+        <div class="card-header text-white" style="background: linear-gradient(90deg,#6f42c1,#9b59b6);">
+          <i class="bi bi-robot me-1"></i>Sinh AI Prompt từ Template
+        </div>
+        <div class="card-body">
+
+          <!-- Step 1 -->
+          <div class="card step-card mb-3">
+            <div class="card-body">
+              <div class="fw-semibold mb-2">Bước 1 — Chọn Template &amp; Sinh Prompt</div>
+              <div class="d-flex gap-2 align-items-end">
+                <div style="min-width:220px;">
+                  <label class="form-label small">Template</label>
+                  <select id="promptTemplateSelect" class="form-select form-select-sm"></select>
+                </div>
+                <button class="btn btn-purple" style="background:#6f42c1;color:#fff;" onclick="generatePrompt()">
+                  <i class="bi bi-magic me-1"></i>Generate Prompt
+                </button>
+                <button class="btn btn-outline-secondary btn-sm" onclick="populateTemplateSelect('promptTemplateSelect');populateTemplateSelect('promptGenTemplateSelect');">
+                  <i class="bi bi-arrow-clockwise"></i>
+                </button>
+              </div>
+              <div id="promptSpinner" class="d-none mt-2">
+                <div class="spinner-border spinner-border-sm" style="color:#6f42c1;"></div>
+                <span class="text-muted small ms-1">Đang sinh prompt...</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="card step-card mb-3">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="fw-semibold">Bước 2 — Prompt sinh ra (copy &amp; dán vào AI)</span>
+                <button class="btn btn-sm btn-outline-secondary" onclick="copyGeneratedPrompt()">
+                  <i class="bi bi-clipboard me-1"></i>Copy
+                </button>
+              </div>
+              <textarea id="generatedPrompt" class="code-editor form-control" readonly placeholder="Prompt sẽ hiển thị ở đây sau khi bấm Generate Prompt..."></textarea>
+              <div class="text-muted small mt-1"><i class="bi bi-info-circle me-1"></i>Copy prompt này và dán vào ChatGPT / Claude / Gemini. AI sẽ trả về một JSON LogicData.</div>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="card step-card mb-3">
+            <div class="card-body">
+              <div class="fw-semibold mb-2">Bước 3 — Dán JSON phản hồi từ AI</div>
+              <textarea id="aiLogicResponse" class="code-editor form-control" placeholder="Dán JSON mà AI trả về tại đây..."></textarea>
+              <div class="mt-2">
+                <button class="btn btn-outline-success" onclick="validateAndUseLogic()">
+                  <i class="bi bi-check-circle me-1"></i>Validate &amp; Use Logic
+                </button>
+              </div>
+              <div id="validateLogicResult" class="result-box d-none mt-2"></div>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="card step-card mb-2">
+            <div class="card-body">
+              <div class="fw-semibold mb-2">Bước 4 — Chọn Template &amp; Generate Excel</div>
+              <div class="d-flex gap-2 align-items-end">
+                <div style="min-width:220px;">
+                  <label class="form-label small">Template</label>
+                  <select id="promptGenTemplateSelect" class="form-select form-select-sm"></select>
+                </div>
+                <button class="btn btn-success" onclick="generateFromPromptFlow()">
+                  <i class="bi bi-download me-1"></i>Generate Excel
+                </button>
+              </div>
+              <div id="promptGenSpinner" class="d-none mt-2">
+                <div class="spinner-border spinner-border-sm text-success"></div>
+                <span class="text-muted small ms-1">Đang tạo Excel...</span>
+              </div>
+              <div id="promptGenResult" class="result-box d-none mt-2"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Generate Panel -->
+    <div class="tab-pane fade" id="panel-generate">
+      <div class="card" style="border-radius: 0 12px 12px 12px;">
+        <div class="card-header bg-warning text-dark">
+          <i class="bi bi-lightning-charge-fill me-1"></i>Generate Excel từ Template + Logic JSON
+        </div>
+        <div class="card-body">
+
+          <!-- Select Template -->
+          <div class="row g-2 mb-3">
+            <div class="col-md-5">
+              <label class="form-label fw-semibold">Chọn Template</label>
+              <div class="d-flex gap-2">
+                <select id="genTemplateSelect" class="form-select" onchange="loadTemplateInfo(this.value)"></select>
+                <button class="btn btn-outline-secondary" onclick="populateTemplateSelect('genTemplateSelect')">
+                  <i class="bi bi-arrow-clockwise"></i>
+                </button>
+              </div>
+            </div>
+            <div class="col-md-7">
+              <label class="form-label fw-semibold">Anchor Keys</label>
+              <div id="genAnchorBadges" class="pt-1"><span class="text-muted small">Chọn template để xem anchor keys</span></div>
+            </div>
+          </div>
+
+          <!-- Logic JSON -->
+          <div class="mb-2">
+            <label class="form-label fw-semibold">Logic JSON</label>
+            <div class="d-flex gap-2 mb-2">
+              <button class="btn btn-sm btn-outline-primary" id="btnFromFile" onclick="toggleLogicMode('file')">
+                <i class="bi bi-folder-open me-1"></i>From File
+              </button>
+              <button class="btn btn-sm btn-outline-secondary" id="btnPasteJson" onclick="toggleLogicMode('paste')">
+                <i class="bi bi-pencil me-1"></i>Paste JSON
+              </button>
+            </div>
+            <div id="logicFileSection">
+              <input type="file" id="logicFileInput" class="form-control" accept=".json" onchange="handleLogicFile(event)" />
+            </div>
+            <div id="logicPasteSection" class="d-none">
+              <textarea id="logicPasteInput" class="code-editor form-control" placeholder="Dán Logic JSON vào đây..."
+                oninput="handleLogicPaste()"></textarea>
+            </div>
+          </div>
+
+          <!-- Logic Preview -->
+          <div id="logicPreviewCard" class="card mb-3 d-none" style="border:1px solid #dee2e6;">
+            <div class="card-body py-2">
+              <div id="logicStatusBadge" class="mb-2"></div>
+              <div id="logicPreviewContent"></div>
+            </div>
+          </div>
+
+          <!-- Filename -->
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Output Filename</label>
+            <input type="text" id="genFilename" class="form-control" style="max-width:300px" placeholder="output.xlsx" />
+          </div>
+
+          <!-- Generate button -->
+          <button class="btn btn-warning fw-bold" id="btnGenerateExcel" onclick="generateExcelFromLogic()" disabled>
+            <i class="bi bi-lightning-charge-fill me-1"></i>Generate Excel &amp; Download
+          </button>
+          <div id="genSpinner" class="d-none mt-2">
+            <div class="spinner-border spinner-border-sm text-warning"></div>
+            <span class="text-muted small ms-1">Đang tạo Excel...</span>
+          </div>
+          <div id="genResult" class="result-box d-none mt-2"></div>
+
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end tab-content -->
+
+</div><!-- end container -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const SAMPLE_SINGLE = {
+  "template": {
+    "sheet_name": "Screen 3075",
+    "global_config": {
+      "column_widths": { "A": 5.0, "B": 15.0, "C": 20.0 }
+    },
+    "styles": {
+      "header_blue": {
+        "fill": "0070C0", "font_color": "FFFFFF", "font_size": 11.0,
+        "bold": true, "align_h": "center", "border": "all_thin"
+      },
+      "meta_yellow": {
+        "fill": "FFF2CC", "font_color": "000000", "font_size": 9.0,
+        "bold": true, "border": "all_thin"
+      }
+    },
+    "layout_blocks": [
+      { "range": "A1:C1", "style": "header_blue", "merge": true, "static_text": "項目定義書_画面" },
+      { "range": "A2:C2", "style": "meta_yellow" }
+    ],
+    "mapping_anchors": {
+      "screen_id": "B2", "screen_name": "C2", "table_items": "A4"
+    }
+  },
+  "logic": {
+    "single_values": { "screen_id": "3075", "screen_name": "メニュー" },
+    "table_data": {
+      "table_items": [
+        ["ID", "Tên Hạng mục", "Ghi chú"],
+        ["1", "Button Login", "Trigger Auth"],
+        ["2", "Text Username", "Nhập mã số"]
+      ]
+    }
+  }
+};
+
+const SAMPLE_MULTI = {
+  "sheets": [
+    {
+      "template": {
+        "sheet_name": "Sheet1",
+        "global_config": { "column_widths": { "A": 5.0, "B": 20.0 } },
+        "styles": {
+          "header": { "fill": "0070C0", "font_color": "FFFFFF", "bold": true, "align_h": "center", "border": "all_thin" }
+        },
+        "layout_blocks": [
+          { "range": "A1:B1", "style": "header", "merge": true, "static_text": "Sheet 1 Header" }
+        ],
+        "mapping_anchors": { "title": "A2" }
+      },
+      "logic": {
+        "single_values": { "title": "Sheet 1 Data" },
+        "table_data": {}
+      }
+    },
+    {
+      "template": {
+        "sheet_name": "Sheet2",
+        "global_config": { "column_widths": { "A": 5.0, "B": 20.0 } },
+        "styles": {
+          "header": { "fill": "00B050", "font_color": "FFFFFF", "bold": true, "align_h": "center", "border": "all_thin" }
+        },
+        "layout_blocks": [
+          { "range": "A1:B1", "style": "header", "merge": true, "static_text": "Sheet 2 Header" }
+        ],
+        "mapping_anchors": { "title": "A2" }
+      },
+      "logic": {
+        "single_values": { "title": "Sheet 2 Data" },
+        "table_data": {}
+      }
+    }
+  ]
+};
+
+function loadSampleSingle() {
+  document.getElementById('singlePayload').value = JSON.stringify(SAMPLE_SINGLE, null, 2);
+}
+function loadSampleMulti() {
+  document.getElementById('multiPayload').value = JSON.stringify(SAMPLE_MULTI, null, 2);
+}
+function clearPayload(payloadId, resultId) {
+  document.getElementById(payloadId).value = '';
+  const r = document.getElementById(resultId);
+  r.classList.add('d-none');
+  r.textContent = '';
+}
+
+function showResult(id, msg, isError = false) {
+  const el = document.getElementById(id);
+  el.classList.remove('d-none');
+  el.style.color = isError ? '#ff5555' : '#50fa7b';
+  el.textContent = msg;
+}
+
+async function checkHealth() {
+  const badge = document.getElementById('healthStatus');
+  badge.className = 'badge bg-secondary health-badge';
+  badge.textContent = 'Checking...';
+  try {
+    const res = await fetch('/health');
+    const data = await res.json();
+    if (data.status === 'healthy') {
+      badge.className = 'badge bg-success health-badge';
+      badge.textContent = 'Healthy';
+    } else {
+      badge.className = 'badge bg-warning health-badge';
+      badge.textContent = 'Degraded';
+    }
+  } catch (e) {
+    badge.className = 'badge bg-danger health-badge';
+    badge.textContent = 'Offline';
+  }
+}
+
+async function generateSingle() {
+  const payload = document.getElementById('singlePayload').value.trim();
+  const spinner = document.getElementById('singleSpinner');
+  if (!payload) { showResult('singleResult', 'Vui lòng nhập JSON payload.', true); return; }
+  let parsed;
+  try { parsed = JSON.parse(payload); }
+  catch (e) { showResult('singleResult', 'JSON không hợp lệ: ' + e.message, true); return; }
+
+  spinner.classList.remove('d-none');
+  document.getElementById('singleResult').classList.add('d-none');
+  try {
+    const res = await fetch('/api/v1/generate-excel', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(parsed)
+    });
+    if (!res.ok) {
+      const err = await res.json();
+      showResult('singleResult', `Lỗi ${res.status}: ${JSON.stringify(err, null, 2)}`, true);
+      return;
+    }
+    const blob = await res.blob();
+    const cd = res.headers.get('Content-Disposition') || '';
+    const match = cd.match(/filename="?([^";\n]+)"?/);
+    const filename = match ? match[1] : 'output.xlsx';
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = filename; a.click();
+    URL.revokeObjectURL(url);
+    showResult('singleResult', `Tải xuống thành công: ${filename}`);
+  } catch (e) {
+    showResult('singleResult', 'Lỗi kết nối: ' + e.message, true);
+  } finally {
+    spinner.classList.add('d-none');
+  }
+}
+
+async function generateMulti() {
+  const payload = document.getElementById('multiPayload').value.trim();
+  const spinner = document.getElementById('multiSpinner');
+  const filename = document.getElementById('multiFilename').value.trim() || 'output_multi.xlsx';
+  if (!payload) { showResult('multiResult', 'Vui lòng nhập JSON payload.', true); return; }
+  let parsed;
+  try { parsed = JSON.parse(payload); }
+  catch (e) { showResult('multiResult', 'JSON không hợp lệ: ' + e.message, true); return; }
+
+  spinner.classList.remove('d-none');
+  document.getElementById('multiResult').classList.add('d-none');
+  try {
+    const res = await fetch(`/api/v1/generate-excel-multi?filename=${encodeURIComponent(filename)}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(parsed)
+    });
+    if (!res.ok) {
+      const err = await res.json();
+      showResult('multiResult', `Lỗi ${res.status}: ${JSON.stringify(err, null, 2)}`, true);
+      return;
+    }
+    const blob = await res.blob();
+    const cd = res.headers.get('Content-Disposition') || '';
+    const match = cd.match(/filename="?([^";\n]+)"?/);
+    const dlFilename = match ? match[1] : filename;
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = dlFilename; a.click();
+    URL.revokeObjectURL(url);
+    showResult('multiResult', `Tải xuống thành công: ${dlFilename}`);
+  } catch (e) {
+    showResult('multiResult', 'Lỗi kết nối: ' + e.message, true);
+  } finally {
+    spinner.classList.add('d-none');
+  }
+}
+
+// ── Shared state ─────────────────────────────────────────────────────────────
+let currentTemplate = null;  // full TemplateConfig object
+let currentLogic    = null;  // validated LogicData object
+const TABLE_KEY_HINTS = ['_start', '_table', '_data', 'table'];
+function isTableKey(key) { return TABLE_KEY_HINTS.some(h => key.includes(h)); }
+
+// ── Shared utilities ──────────────────────────────────────────────────────────
+async function populateTemplateSelect(selectId) {
+  try {
+    const res = await fetch('/api/v1/templates');
+    const data = await res.json();
+    const sel = document.getElementById(selectId);
+    if (!sel) return;
+    const prev = sel.value;
+    sel.innerHTML = '<option value="">— Chọn template —</option>';
+    (data.templates || []).forEach(t => {
+      const opt = document.createElement('option');
+      opt.value = t.template_name;
+      opt.textContent = `${t.template_name} (${t.sheet_name})`;
+      sel.appendChild(opt);
+    });
+    if (prev) sel.value = prev;
+  } catch(e) { /* ignore */ }
+}
+
+function validateLogicObject(obj) {
+  if (typeof obj !== 'object' || obj === null) throw new Error('Root phải là JSON object');
+  if (typeof obj.single_values !== 'object')  throw new Error('"single_values" phải là object');
+  if (typeof obj.table_data !== 'object')      throw new Error('"table_data" phải là object');
+}
+
+async function postAndDownload(url, payload, filename) {
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  });
+  if (!res.ok) {
+    const err = await res.json();
+    throw new Error(JSON.stringify(err, null, 2));
+  }
+  const blob = await res.blob();
+  const cd = res.headers.get('Content-Disposition') || '';
+  const match = cd.match(/filename="?([^";\n]+)"?/);
+  const dlName = match ? match[1] : (filename || 'output.xlsx');
+  const url2 = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url2; a.download = dlName; a.click();
+  URL.revokeObjectURL(url2);
+  return dlName;
+}
+
+// ── Feature 1: Templates ──────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  const fi = document.getElementById('templateFileInput');
+  if (fi) fi.addEventListener('change', e => {
+    const name = e.target.files[0]?.name.replace(/\.json$/i, '') ?? '';
+    document.getElementById('templateNameInput').value = name;
+  });
+});
+
+async function importTemplate() {
+  const spinner = document.getElementById('templateImportSpinner');
+  const resultEl = document.getElementById('templateImportResult');
+  const file = document.getElementById('templateFileInput').files[0];
+  const name = document.getElementById('templateNameInput').value.trim();
+  if (!file) { showResult('templateImportResult', 'Vui lòng chọn file JSON.', true); return; }
+  if (!name) { showResult('templateImportResult', 'Vui lòng nhập tên template.', true); return; }
+  spinner.classList.remove('d-none');
+  resultEl.classList.add('d-none');
+  try {
+    const text = await file.text();
+    let tplJson;
+    try { tplJson = JSON.parse(text); } catch(e) { showResult('templateImportResult', 'File JSON không hợp lệ: ' + e.message, true); return; }
+    const res = await fetch('/api/v1/templates', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ template_name: name, template: tplJson })
+    });
+    const data = await res.json();
+    if (!res.ok) {
+      showResult('templateImportResult', `Lỗi ${res.status}: ${JSON.stringify(data, null, 2)}`, true);
+      return;
+    }
+    showResult('templateImportResult', `Import thành công: "${data.template_name}" (sheet: ${data.sheet_name})`);
+    await refreshTemplateList();
+    await populateTemplateSelect('promptTemplateSelect');
+    await populateTemplateSelect('promptGenTemplateSelect');
+    await populateTemplateSelect('genTemplateSelect');
+  } catch(e) {
+    showResult('templateImportResult', 'Lỗi: ' + e.message, true);
+  } finally {
+    spinner.classList.add('d-none');
+  }
+}
+
+async function refreshTemplateList() {
+  try {
+    const res = await fetch('/api/v1/templates');
+    const data = await res.json();
+    const wrapper = document.getElementById('templateTableWrapper');
+    if (!data.templates || data.templates.length === 0) {
+      wrapper.innerHTML = '<div class="text-muted small">Chưa có template nào.</div>';
+      return;
+    }
+    let html = `<table class="table table-sm table-bordered align-middle">
+      <thead class="table-dark"><tr><th>Tên</th><th>Sheet</th><th>Anchor Keys</th><th></th></tr></thead><tbody>`;
+    data.templates.forEach(t => {
+      const badges = t.anchor_keys.map(k => {
+        const cls = isTableKey(k) ? 'bg-warning text-dark' : 'bg-info text-dark';
+        return `<span class="badge ${cls} me-1 anchor-badge-single">${k}</span>`;
+      }).join('');
+      html += `<tr>
+        <td class="fw-semibold">${t.template_name}</td>
+        <td>${t.sheet_name}</td>
+        <td>${badges}</td>
+        <td><button class="btn btn-sm btn-outline-danger" onclick="deleteTemplate('${t.template_name}')">
+          <i class="bi bi-trash"></i>
+        </button></td>
+      </tr>`;
+    });
+    html += '</tbody></table>';
+    wrapper.innerHTML = html;
+  } catch(e) {
+    document.getElementById('templateTableWrapper').innerHTML = '<div class="text-danger small">Lỗi tải danh sách template.</div>';
+  }
+}
+
+async function deleteTemplate(name) {
+  if (!confirm(`Xoá template "${name}"?`)) return;
+  try {
+    const res = await fetch(`/api/v1/templates/${encodeURIComponent(name)}`, { method: 'DELETE' });
+    if (!res.ok) { alert('Không xoá được template.'); return; }
+    await refreshTemplateList();
+    await populateTemplateSelect('promptTemplateSelect');
+    await populateTemplateSelect('promptGenTemplateSelect');
+    await populateTemplateSelect('genTemplateSelect');
+  } catch(e) { alert('Lỗi: ' + e.message); }
+}
+
+// ── Feature 2: AI Prompt ──────────────────────────────────────────────────────
+async function generatePrompt() {
+  const name = document.getElementById('promptTemplateSelect').value;
+  if (!name) { showResult('validateLogicResult', 'Vui lòng chọn template.', true); return; }
+  const spinner = document.getElementById('promptSpinner');
+  spinner.classList.remove('d-none');
+  try {
+    const res = await fetch(`/api/v1/templates/${encodeURIComponent(name)}/prompt`);
+    const data = await res.json();
+    if (!res.ok) { document.getElementById('generatedPrompt').value = JSON.stringify(data, null, 2); return; }
+    document.getElementById('generatedPrompt').value = data.prompt;
+  } catch(e) {
+    document.getElementById('generatedPrompt').value = 'Lỗi: ' + e.message;
+  } finally {
+    spinner.classList.add('d-none');
+  }
+}
+
+function copyGeneratedPrompt() {
+  const ta = document.getElementById('generatedPrompt');
+  navigator.clipboard.writeText(ta.value).then(() => alert('Đã copy prompt vào clipboard!'));
+}
+
+function validateAndUseLogic() {
+  const raw = document.getElementById('aiLogicResponse').value.trim();
+  if (!raw) { showResult('validateLogicResult', 'Vui lòng dán JSON phản hồi từ AI.', true); return; }
+  try {
+    const obj = JSON.parse(raw);
+    validateLogicObject(obj);
+    currentLogic = obj;
+    const nSingle = Object.keys(obj.single_values).length;
+    const nTable  = Object.keys(obj.table_data).length;
+    showResult('validateLogicResult', `✅ Hợp lệ: ${nSingle} single_values, ${nTable} table_data keys.`);
+  } catch(e) {
+    currentLogic = null;
+    showResult('validateLogicResult', '❌ ' + e.message, true);
+  }
+}
+
+async function generateFromPromptFlow() {
+  const templateName = document.getElementById('promptGenTemplateSelect').value;
+  if (!templateName) { showResult('promptGenResult', 'Vui lòng chọn template.', true); return; }
+  if (!currentLogic)  { showResult('promptGenResult', 'Vui lòng validate logic JSON ở Bước 3 trước.', true); return; }
+  const spinner = document.getElementById('promptGenSpinner');
+  spinner.classList.remove('d-none');
+  document.getElementById('promptGenResult').classList.add('d-none');
+  try {
+    const tplRes = await fetch(`/api/v1/templates/${encodeURIComponent(templateName)}`);
+    if (!tplRes.ok) { showResult('promptGenResult', 'Không lấy được template.', true); return; }
+    const tplData = await tplRes.json();
+    const filename = await postAndDownload('/api/v1/generate-excel', { template: tplData.template, logic: currentLogic });
+    showResult('promptGenResult', `Tải xuống thành công: ${filename}`);
+  } catch(e) {
+    showResult('promptGenResult', '❌ ' + e.message, true);
+  } finally {
+    spinner.classList.add('d-none');
+  }
+}
+
+// ── Feature 3: Generate from Logic File ──────────────────────────────────────
+let genCurrentTemplate = null;
+let genCurrentLogic    = null;
+
+async function loadTemplateInfo(name) {
+  if (!name) { genCurrentTemplate = null; updateGenButton(); return; }
+  try {
+    const res = await fetch(`/api/v1/templates/${encodeURIComponent(name)}`);
+    if (!res.ok) { genCurrentTemplate = null; updateGenButton(); return; }
+    const data = await res.json();
+    genCurrentTemplate = data;
+    // Render anchor badges
+    const anchors = data.template.mapping_anchors || {};
+    const container = document.getElementById('genAnchorBadges');
+    container.innerHTML = Object.entries(anchors).map(([k, v]) => {
+      const cls = isTableKey(k) ? 'bg-warning text-dark anchor-badge-table' : 'bg-info text-dark anchor-badge-single';
+      return `<span class="badge ${cls} me-1" title="→ cell ${v}">${k}</span>`;
+    }).join('');
+    // Default filename
+    const sheet = data.template.sheet_name || 'output';
+    document.getElementById('genFilename').value = sheet.replace(/[^\w\-. ]/g, '_') + '.xlsx';
+    updateGenButton();
+  } catch(e) { genCurrentTemplate = null; updateGenButton(); }
+}
+
+function toggleLogicMode(mode) {
+  document.getElementById('logicFileSection').classList.toggle('d-none', mode !== 'file');
+  document.getElementById('logicPasteSection').classList.toggle('d-none', mode !== 'paste');
+  document.getElementById('btnFromFile').className  = mode === 'file'  ? 'btn btn-sm btn-primary' : 'btn btn-sm btn-outline-primary';
+  document.getElementById('btnPasteJson').className = mode === 'paste' ? 'btn btn-sm btn-secondary' : 'btn btn-sm btn-outline-secondary';
+}
+
+function setGenLogic(obj) {
+  genCurrentLogic = obj;
+  const card = document.getElementById('logicPreviewCard');
+  const badge = document.getElementById('logicStatusBadge');
+  const content = document.getElementById('logicPreviewContent');
+  card.classList.remove('d-none');
+  try {
+    validateLogicObject(obj);
+    const nS = Object.keys(obj.single_values).length;
+    const nT = Object.keys(obj.table_data).length;
+    badge.innerHTML = `<span class="badge bg-success">✅ ${nS} single values, ${nT} table keys</span>`;
+    let rows = Object.entries(obj.single_values).slice(0, 5).map(([k,v]) =>
+      `<tr><td class="fw-semibold">${k}</td><td>${JSON.stringify(v)}</td></tr>`
+    ).join('');
+    content.innerHTML = `<table class="table table-sm logic-preview-table mb-0"><tbody>${rows}</tbody></table>`
+      + (Object.keys(obj.single_values).length > 5 ? `<div class="text-muted small">... và ${Object.keys(obj.single_values).length - 5} key khác</div>` : '');
+  } catch(e) {
+    genCurrentLogic = null;
+    badge.innerHTML = `<span class="badge bg-danger">❌ Cấu trúc không hợp lệ: ${e.message}</span>`;
+    content.innerHTML = '';
+  }
+  updateGenButton();
+}
+
+function handleLogicFile(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    try {
+      const obj = JSON.parse(ev.target.result);
+      setGenLogic(obj);
+    } catch(err) {
+      genCurrentLogic = null;
+      document.getElementById('logicStatusBadge').innerHTML = `<span class="badge bg-danger">❌ JSON không hợp lệ: ${err.message}</span>`;
+      document.getElementById('logicPreviewCard').classList.remove('d-none');
+      updateGenButton();
+    }
+  };
+  reader.readAsText(file);
+}
+
+function handleLogicPaste() {
+  const raw = document.getElementById('logicPasteInput').value.trim();
+  if (!raw) { genCurrentLogic = null; updateGenButton(); return; }
+  try {
+    const obj = JSON.parse(raw);
+    setGenLogic(obj);
+  } catch(e) {
+    genCurrentLogic = null;
+    updateGenButton();
+  }
+}
+
+function updateGenButton() {
+  document.getElementById('btnGenerateExcel').disabled = !(genCurrentTemplate && genCurrentLogic);
+}
+
+async function generateExcelFromLogic() {
+  if (!genCurrentTemplate || !genCurrentLogic) return;
+  const spinner = document.getElementById('genSpinner');
+  const filename = document.getElementById('genFilename').value.trim() || 'output.xlsx';
+  spinner.classList.remove('d-none');
+  document.getElementById('genResult').classList.add('d-none');
+  try {
+    const payload = { template: genCurrentTemplate.template, logic: genCurrentLogic };
+    const dlName = await postAndDownload('/api/v1/generate-excel', payload, filename);
+    showResult('genResult', `Tải xuống thành công: ${dlName}`);
+  } catch(e) {
+    showResult('genResult', '❌ ' + e.message, true);
+  } finally {
+    spinner.classList.add('d-none');
+  }
+}
+
+// ── Auto health check on load ─────────────────────────────────────────────────
+window.addEventListener('DOMContentLoaded', () => {
+  checkHealth();
+  loadSampleSingle();
+  populateTemplateSelect('promptTemplateSelect');
+  populateTemplateSelect('promptGenTemplateSelect');
+  populateTemplateSelect('genTemplateSelect');
+  refreshTemplateList();
+});
+</script>
+</body>
+</html>

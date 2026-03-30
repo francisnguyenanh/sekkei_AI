@@ -1,95 +1,63 @@
 {
-  "sheet_name": "IPO図",
+  "sheet_name": "モバイル状況一覧→受入",
   "global_config": {
+    "column_widths": {
+      "A": 2.08984375
+    },
+    "row_heights": {
+      "1": 13,
+      "2": 13,
+      "3": 13,
+      "4": 13,
+      "5": 13,
+      "6": 13,
+      "7": 13,
+      "8": 13,
+      "9": 13,
+      "10": 13,
+      "11": 13,
+      "12": 13,
+      "13": 13,
+      "14": 13,
+      "15": 13,
+      "16": 13,
+      "17": 13,
+      "18": 13,
+      "19": 13,
+      "20": 13,
+      "21": 13,
+      "22": 13,
+      "23": 13,
+      "24": 13,
+      "25": 13,
+      "26": 13,
+      "27": 13,
+      "28": 13,
+      "29": 13,
+      "30": 13,
+      "31": 13,
+      "32": 13,
+      "33": 13,
+      "34": 13,
+      "35": 13,
+      "36": 13,
+      "37": 13,
+      "38": 13,
+      "39": 13,
+      "40": 13,
+      "41": 13,
+      "42": 13,
+      "43": 13,
+      "44": 13,
+      "45": 13
+    },
     "default_font": {
       "name": "Meiryo UI",
       "size": 9
-    },
-    "column_widths": {
-      "A": 16,
-      "B": 18,
-      "C": 30,
-      "D": 18,
-      "E": 3
-    },
-    "row_heights": {
-      "1": 20,
-      "2": 18,
-      "3": 18,
-      "4": 18,
-      "5": 15,
-      "6": 15,
-      "7": 15
     }
   },
   "styles": {
-    "header_title": {
-      "fill": "1F4E79",
-      "font_color": "FFFFFF",
-      "font_size": 11,
-      "font_name": "Meiryo UI",
-      "bold": true,
-      "align_h": "center",
-      "align_v": "center",
-      "border": null,
-      "wrap_text": null
-    },
-    "header_label": {
-      "fill": "D6E4F0",
-      "font_color": "000000",
-      "font_size": 9,
-      "font_name": "Meiryo UI",
-      "bold": true,
-      "align_h": "center",
-      "align_v": "center",
-      "border": "all_thin",
-      "wrap_text": null
-    },
-    "header_value": {
-      "fill": null,
-      "font_color": null,
-      "font_size": 9,
-      "font_name": "Meiryo UI",
-      "bold": false,
-      "align_h": "left",
-      "align_v": "center",
-      "border": "all_thin",
-      "wrap_text": null
-    },
-    "section_title": {
-      "fill": "BDD7EE",
-      "font_color": "000000",
-      "font_size": 9,
-      "font_name": "Meiryo UI",
-      "bold": true,
-      "align_h": "left",
-      "align_v": "center",
-      "border": "all_thin",
-      "wrap_text": null
-    },
-    "col_header": {
-      "fill": "9BC2E6",
-      "font_color": "000000",
-      "font_size": 9,
-      "font_name": "Meiryo UI",
-      "bold": true,
-      "align_h": "center",
-      "align_v": "center",
-      "border": "all_thin",
-      "wrap_text": true
-    },
-    "data_cell": {
-      "fill": null,
-      "font_color": null,
-      "font_size": 9,
-      "font_name": "Meiryo UI",
-      "bold": false,
-      "align_h": "left",
-      "align_v": "center",
-      "border": "all_thin",
-      "wrap_text": null
-    },
-    "data_cell_center": {
+    "style_001": {
       "fill": null,
       "font_color": null,
       "font_size": 9,
@@ -97,1142 +65,1708 @@
       "bold": false,
       "align_h": "center",
       "align_v": "center",
-      "border": "all_thin",
-      "wrap_text": null
+      "wrap_text": null,
+      "border": "L:thin,T:thin"
     },
-    "note_cell": {
-      "fill": "FFF2CC",
-      "font_color": "000000",
+    "style_002": {
+      "fill": null,
+      "font_color": null,
+      "font_size": 9,
+      "font_name": "Meiryo UI",
+      "bold": false,
+      "align_h": "right",
+      "align_v": "center",
+      "wrap_text": null,
+      "border": "L:thin,T:thin"
+    },
+    "style_003": {
+      "fill": null,
+      "font_color": null,
       "font_size": 8,
       "font_name": "Meiryo UI",
       "bold": false,
       "align_h": "left",
       "align_v": "top",
-      "border": "all_thin",
-      "wrap_text": true
+      "wrap_text": true,
+      "border": "L:thin,T:thin"
     },
-    "ipo_input": {
-      "fill": "D9EAD3",
-      "font_color": "000000",
+    "style_004": {
+      "fill": null,
+      "font_color": null,
       "font_size": 9,
       "font_name": "Meiryo UI",
       "bold": false,
       "align_h": "left",
       "align_v": "center",
-      "border": "all_thin",
-      "wrap_text": true
+      "wrap_text": null,
+      "border": "L:thin,T:thin"
     },
-    "ipo_process": {
-      "fill": "FFF2CC",
-      "font_color": "000000",
+    "style_005": {
+      "fill": null,
+      "font_color": null,
+      "font_size": 9,
+      "font_name": "Meiryo UI",
+      "bold": true,
+      "align_h": "center",
+      "align_v": "center",
+      "wrap_text": null,
+      "border": "L:thin,T:thin"
+    },
+    "style_006": {
+      "fill": null,
+      "font_color": null,
+      "font_size": 8,
+      "font_name": "Meiryo UI",
+      "bold": false,
+      "align_h": "center",
+      "align_v": "center",
+      "wrap_text": null,
+      "border": "L:thin,T:thin"
+    },
+    "style_007": {
+      "fill": null,
+      "font_color": null,
       "font_size": 9,
       "font_name": "Meiryo UI",
       "bold": false,
-      "align_h": "left",
-      "align_v": "top",
-      "border": "all_thin",
-      "wrap_text": true
+      "align_h": null,
+      "align_v": "center",
+      "wrap_text": null,
+      "border": "L:thin,T:thin"
     },
-    "ipo_output": {
-      "fill": "FCE5CD",
-      "font_color": "000000",
+    "style_008": {
+      "fill": null,
+      "font_color": null,
       "font_size": 9,
       "font_name": "Meiryo UI",
       "bold": false,
-      "align_h": "left",
+      "align_h": null,
       "align_v": "center",
-      "border": "all_thin",
-      "wrap_text": true
+      "wrap_text": null,
+      "border": "T:thin"
     },
-    "ipo_col_input": {
-      "fill": "6AA84F",
-      "font_color": "FFFFFF",
+    "style_009": {
+      "fill": null,
+      "font_color": null,
       "font_size": 9,
       "font_name": "Meiryo UI",
-      "bold": true,
-      "align_h": "center",
+      "bold": false,
+      "align_h": null,
       "align_v": "center",
-      "border": "all_thin",
-      "wrap_text": null
+      "wrap_text": null,
+      "border": "R:thin,T:thin"
     },
-    "ipo_col_process": {
-      "fill": "F1C232",
-      "font_color": "000000",
+    "style_010": {
+      "fill": null,
+      "font_color": null,
       "font_size": 9,
       "font_name": "Meiryo UI",
-      "bold": true,
-      "align_h": "center",
+      "bold": false,
+      "align_h": null,
       "align_v": "center",
-      "border": "all_thin",
-      "wrap_text": null
+      "wrap_text": null,
+      "border": "L:thin"
     },
-    "ipo_col_output": {
-      "fill": "E06666",
-      "font_color": "FFFFFF",
+    "style_011": {
+      "fill": null,
+      "font_color": null,
       "font_size": 9,
       "font_name": "Meiryo UI",
-      "bold": true,
-      "align_h": "center",
+      "bold": false,
+      "align_h": null,
       "align_v": "center",
-      "border": "all_thin",
-      "wrap_text": null
+      "wrap_text": null,
+      "border": null
+    },
+    "style_012": {
+      "fill": null,
+      "font_color": null,
+      "font_size": 9,
+      "font_name": "Meiryo UI",
+      "bold": false,
+      "align_h": null,
+      "align_v": "center",
+      "wrap_text": null,
+      "border": "L:thin,R:thin"
+    },
+    "style_013": {
+      "fill": null,
+      "font_color": null,
+      "font_size": 9,
+      "font_name": "Meiryo UI",
+      "bold": false,
+      "align_h": null,
+      "align_v": "center",
+      "wrap_text": null,
+      "border": "R:thin"
     }
   },
   "layout_blocks": [
     {
-      "range": "A1:E1",
-      "style": "header_title",
+      "range": "BA3:BE4",
+      "style": "style_001",
+      "merge": true,
+      "static_text": null
+    },
+    {
+      "range": "BA2:BE2",
+      "style": "style_001",
+      "merge": true,
+      "static_text": "検収者"
+    },
+    {
+      "range": "W2:AF2",
+      "style": "style_001",
+      "merge": true,
+      "static_text": "顧客名"
+    },
+    {
+      "range": "BL3:BM4",
+      "style": "style_002",
+      "merge": true,
+      "static_text": null
+    },
+    {
+      "range": "AG4:AJ4",
+      "style": "style_001",
+      "merge": true,
+      "static_text": "更新"
+    },
+    {
+      "range": "S7:BN9",
+      "style": "style_003",
+      "merge": true,
+      "static_text": "7-1:各条件、表示情報をモバイル将軍に追加する_x000D_\n7-9:モバイル将軍～売上伝票（受入伝票）を作成した際の[荷降業者/現場]の値を自動セットしたい"
+    },
+    {
+      "range": "F9:Q9",
+      "style": "style_001",
+      "merge": true,
+      "static_text": "2.33.6"
+    },
+    {
+      "range": "BF3:BJ4",
+      "style": "style_001",
+      "merge": true,
+      "static_text": null
+    },
+    {
+      "range": "BF2:BJ2",
+      "style": "style_001",
+      "merge": true,
+      "static_text": "作成者"
+    },
+    {
+      "range": "B7:E8",
+      "style": "style_001",
+      "merge": true,
+      "static_text": "9999"
+    },
+    {
+      "range": "AG3:AJ3",
+      "style": "style_001",
+      "merge": true,
+      "static_text": "初回"
+    },
+    {
+      "range": "BN3:BN4",
+      "style": "style_004",
+      "merge": true,
+      "static_text": "h"
+    },
+    {
+      "range": "AK2:AQ2",
+      "style": "style_001",
+      "merge": true,
+      "static_text": "作成日"
+    },
+    {
+      "range": "F7:Q8",
+      "style": "style_001",
+      "merge": true,
+      "static_text": "モバイル状況一覧→受入"
+    },
+    {
+      "range": "S6:BN6",
+      "style": "style_001",
+      "merge": true,
+      "static_text": "要件概要"
+    },
+    {
+      "range": "BL2:BN2",
+      "style": "style_001",
+      "merge": true,
+      "static_text": "総工数"
+    },
+    {
+      "range": "B6:E6",
+      "style": "style_001",
+      "merge": true,
+      "static_text": "画面ID"
+    },
+    {
+      "range": "AR2:AX2",
+      "style": "style_001",
+      "merge": true,
+      "static_text": "作成者"
+    },
+    {
+      "range": "B2:I4",
+      "style": "style_005",
       "merge": true,
       "static_text": "項目定義書_IPO図"
     },
     {
-      "range": "A2:B2",
-      "style": "header_label",
+      "range": "J2:R2",
+      "style": "style_001",
       "merge": true,
       "static_text": "シリーズ名"
     },
     {
-      "range": "C2:C2",
-      "style": "header_value",
-      "merge": false,
-      "static_text": null
-    },
-    {
-      "range": "D2:E2",
-      "style": "header_value",
+      "range": "AK3:AQ3",
+      "style": "style_001",
       "merge": true,
-      "static_text": null
+      "static_text": "2025-02-18 00:00:00"
     },
     {
-      "range": "A3:A3",
-      "style": "header_label",
-      "merge": false,
-      "static_text": "画面ID"
-    },
-    {
-      "range": "B3:B3",
-      "style": "header_value",
-      "merge": false,
-      "static_text": null
-    },
-    {
-      "range": "C3:C3",
-      "style": "header_label",
-      "merge": false,
-      "static_text": "画面名"
-    },
-    {
-      "range": "D3:E3",
-      "style": "header_value",
+      "range": "AR4:AX4",
+      "style": "style_001",
       "merge": true,
-      "static_text": null
+      "static_text": "Loc"
     },
     {
-      "range": "A4:A4",
-      "style": "header_label",
-      "merge": false,
+      "range": "B9:E9",
+      "style": "style_001",
+      "merge": true,
+      "static_text": "画面Ver"
+    },
+    {
+      "range": "AR3:AX3",
+      "style": "style_001",
+      "merge": true,
+      "static_text": "Loc"
+    },
+    {
+      "range": "W3:AF4",
+      "style": "style_001",
+      "merge": true,
+      "static_text": "株式会社ISC　様"
+    },
+    {
+      "range": "AK4:AQ4",
+      "style": "style_001",
+      "merge": true,
+      "static_text": "2025-07-28 00:00:00"
+    },
+    {
+      "range": "S2:V2",
+      "style": "style_001",
+      "merge": true,
       "static_text": "案件番号"
     },
     {
-      "range": "B4:B4",
-      "style": "header_value",
-      "merge": false,
-      "static_text": null
-    },
-    {
-      "range": "C4:C4",
-      "style": "header_label",
-      "merge": false,
-      "static_text": "顧客名"
-    },
-    {
-      "range": "D4:E4",
-      "style": "header_value",
+      "range": "AG2:AJ2",
+      "style": "style_001",
       "merge": true,
-      "static_text": null
-    },
-    {
-      "range": "A5:A5",
-      "style": "header_label",
-      "merge": false,
       "static_text": "版数"
     },
     {
-      "range": "B5:B5",
-      "style": "header_value",
-      "merge": false,
-      "static_text": "初回"
-    },
-    {
-      "range": "C5:C5",
-      "style": "header_label",
-      "merge": false,
-      "static_text": "作成日"
-    },
-    {
-      "range": "D5:E5",
-      "style": "header_value",
+      "range": "F6:Q6",
+      "style": "style_001",
       "merge": true,
-      "static_text": null
+      "static_text": "画面名"
     },
     {
-      "range": "A6:A6",
-      "style": "header_label",
-      "merge": false,
-      "static_text": "要件概要"
-    },
-    {
-      "range": "B6:E6",
-      "style": "note_cell",
+      "range": "S3:V4",
+      "style": "style_006",
       "merge": true,
-      "static_text": null
+      "static_text": "20230927"
     },
     {
-      "range": "A7:E7",
-      "style": "section_title",
+      "range": "J3:R4",
+      "style": "style_001",
       "merge": true,
-      "static_text": "【IPO図（Input-Process-Output）】"
+      "static_text": "環境将軍R(A1)"
     },
     {
-      "range": "A8:A8",
-      "style": "ipo_col_input",
+      "range": "A1",
+      "style": "style_007",
       "merge": false,
-      "static_text": "入力画面・入力項目"
+      "static_text": null
+    },
+    {
+      "range": "B1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "C1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "D1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "E1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "F1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "G1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "H1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "I1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "J1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "K1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "L1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "M1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "N1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "O1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "P1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "Q1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "R1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "S1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "T1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "U1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "V1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "W1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "X1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "Y1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "Z1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "AA1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "AB1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "AC1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "AD1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "AE1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "AF1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "AG1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "AH1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "AI1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "AJ1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "AK1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "AL1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "AM1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "AN1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "AO1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "AP1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "AQ1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "AR1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "AS1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "AT1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "AU1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "AV1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "AW1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "AX1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "AY1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "AZ1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "BA1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "BB1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "BC1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "BD1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "BE1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "BF1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "BG1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "BH1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "BI1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "BJ1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "BK1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "BL1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "BM1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "BN1",
+      "style": "style_008",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "BO1",
+      "style": "style_009",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "A2",
+      "style": "style_010",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "AY2",
+      "style": "style_010",
+      "merge": false,
+      "static_text": null
+    },
+    {
+      "range": "AZ2",
+      "style": "style_011",
+      "merge": false,
+      "static_text": null
     },
     {
-      "range": "B8:B8",
-      "style": "ipo_col_input",
+      "range": "BK2",
+      "style": "style_010",
       "merge": false,
-      "static_text": "入力項目"
+      "static_text": null
     },
     {
-      "range": "C8:C8",
-      "style": "ipo_col_process",
+      "range": "BO2",
+      "style": "style_012",
       "merge": false,
-      "static_text": "プロセス（処理内容）"
+      "static_text": null
     },
     {
-      "range": "D8:D8",
-      "style": "ipo_col_output",
+      "range": "A3",
+      "style": "style_010",
       "merge": false,
-      "static_text": "出力項目"
+      "static_text": null
     },
     {
-      "range": "E8:E8",
-      "style": "col_header",
+      "range": "AY3",
+      "style": "style_010",
       "merge": false,
-      "static_text": "備考"
+      "static_text": null
     },
     {
-      "range": "A9:A9",
-      "style": "ipo_input",
+      "range": "AZ3",
+      "style": "style_011",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "B9:B9",
-      "style": "ipo_input",
+      "range": "BK3",
+      "style": "style_010",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "C9:C9",
-      "style": "ipo_process",
+      "range": "BO3",
+      "style": "style_012",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "D9:D9",
-      "style": "ipo_output",
+      "range": "A4",
+      "style": "style_010",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "E9:E9",
-      "style": "note_cell",
+      "range": "AY4",
+      "style": "style_010",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "A10:A10",
-      "style": "ipo_input",
+      "range": "AZ4",
+      "style": "style_011",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "B10:B10",
-      "style": "ipo_input",
+      "range": "BK4",
+      "style": "style_010",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "C10:C10",
-      "style": "ipo_process",
+      "range": "BO4",
+      "style": "style_012",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "D10:D10",
-      "style": "ipo_output",
+      "range": "A5",
+      "style": "style_010",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "E10:E10",
-      "style": "note_cell",
+      "range": "B5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "A11:A11",
-      "style": "ipo_input",
+      "range": "C5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "B11:B11",
-      "style": "ipo_input",
+      "range": "D5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "C11:C11",
-      "style": "ipo_process",
+      "range": "E5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "D11:D11",
-      "style": "ipo_output",
+      "range": "F5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "E11:E11",
-      "style": "note_cell",
+      "range": "G5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "A12:A12",
-      "style": "ipo_input",
+      "range": "H5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "B12:B12",
-      "style": "ipo_input",
+      "range": "I5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "C12:C12",
-      "style": "ipo_process",
+      "range": "J5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "D12:D12",
-      "style": "ipo_output",
+      "range": "K5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "E12:E12",
-      "style": "note_cell",
+      "range": "L5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "A13:A13",
-      "style": "ipo_input",
+      "range": "M5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "B13:B13",
-      "style": "ipo_input",
+      "range": "N5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "C13:C13",
-      "style": "ipo_process",
+      "range": "O5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "D13:D13",
-      "style": "ipo_output",
+      "range": "P5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "E13:E13",
-      "style": "note_cell",
+      "range": "Q5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "A14:A14",
-      "style": "ipo_input",
+      "range": "R5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "B14:B14",
-      "style": "ipo_input",
+      "range": "S5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "C14:C14",
-      "style": "ipo_process",
+      "range": "T5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "D14:D14",
-      "style": "ipo_output",
+      "range": "U5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "E14:E14",
-      "style": "note_cell",
+      "range": "V5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "A15:A15",
-      "style": "ipo_input",
+      "range": "W5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "B15:B15",
-      "style": "ipo_input",
+      "range": "X5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "C15:C15",
-      "style": "ipo_process",
+      "range": "Y5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "D15:D15",
-      "style": "ipo_output",
+      "range": "Z5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "E15:E15",
-      "style": "note_cell",
+      "range": "AA5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "A16:A16",
-      "style": "ipo_input",
+      "range": "AB5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "B16:B16",
-      "style": "ipo_input",
+      "range": "AC5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "C16:C16",
-      "style": "ipo_process",
+      "range": "AD5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "D16:D16",
-      "style": "ipo_output",
+      "range": "AE5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "E16:E16",
-      "style": "note_cell",
+      "range": "AF5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "A17:A17",
-      "style": "ipo_input",
+      "range": "AG5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "B17:B17",
-      "style": "ipo_input",
+      "range": "AH5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "C17:C17",
-      "style": "ipo_process",
+      "range": "AI5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "D17:D17",
-      "style": "ipo_output",
+      "range": "AJ5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "E17:E17",
-      "style": "note_cell",
+      "range": "AK5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "A18:A18",
-      "style": "ipo_input",
+      "range": "AL5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "B18:B18",
-      "style": "ipo_input",
+      "range": "AM5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "C18:C18",
-      "style": "ipo_process",
+      "range": "AN5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "D18:D18",
-      "style": "ipo_output",
+      "range": "AO5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "E18:E18",
-      "style": "note_cell",
+      "range": "AP5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "A19:A19",
-      "style": "ipo_input",
+      "range": "AQ5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "B19:B19",
-      "style": "ipo_input",
+      "range": "AR5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "C19:C19",
-      "style": "ipo_process",
+      "range": "AS5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "D19:D19",
-      "style": "ipo_output",
+      "range": "AT5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "E19:E19",
-      "style": "note_cell",
+      "range": "AU5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "A20:A20",
-      "style": "ipo_input",
+      "range": "AV5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "B20:B20",
-      "style": "ipo_input",
+      "range": "AW5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "C20:C20",
-      "style": "ipo_process",
+      "range": "AX5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "D20:D20",
-      "style": "ipo_output",
+      "range": "AY5",
+      "style": "style_011",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "E20:E20",
-      "style": "note_cell",
+      "range": "AZ5",
+      "style": "style_011",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "A21:A21",
-      "style": "ipo_input",
+      "range": "BA5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "B21:B21",
-      "style": "ipo_input",
+      "range": "BB5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "C21:C21",
-      "style": "ipo_process",
+      "range": "BC5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "D21:D21",
-      "style": "ipo_output",
+      "range": "BD5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "E21:E21",
-      "style": "note_cell",
+      "range": "BE5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "A22:A22",
-      "style": "ipo_input",
+      "range": "BF5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "B22:B22",
-      "style": "ipo_input",
+      "range": "BG5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "C22:C22",
-      "style": "ipo_process",
+      "range": "BH5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "D22:D22",
-      "style": "ipo_output",
+      "range": "BI5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "E22:E22",
-      "style": "note_cell",
+      "range": "BJ5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "A23:A23",
-      "style": "ipo_input",
+      "range": "BK5",
+      "style": "style_011",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "B23:B23",
-      "style": "ipo_input",
+      "range": "BL5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "C23:C23",
-      "style": "ipo_process",
+      "range": "BM5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "D23:D23",
-      "style": "ipo_output",
+      "range": "BN5",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "E23:E23",
-      "style": "note_cell",
+      "range": "BO5",
+      "style": "style_013",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "A24:A24",
-      "style": "ipo_input",
+      "range": "A6",
+      "style": "style_010",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "B24:B24",
-      "style": "ipo_input",
+      "range": "R6",
+      "style": "style_010",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "C24:C24",
-      "style": "ipo_process",
+      "range": "BO6",
+      "style": "style_012",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "D24:D24",
-      "style": "ipo_output",
+      "range": "A7",
+      "style": "style_010",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "E24:E24",
-      "style": "note_cell",
+      "range": "R7",
+      "style": "style_010",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "A25:A25",
-      "style": "ipo_input",
+      "range": "BO7",
+      "style": "style_012",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "B25:B25",
-      "style": "ipo_input",
+      "range": "A8",
+      "style": "style_010",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "C25:C25",
-      "style": "ipo_process",
+      "range": "R8",
+      "style": "style_010",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "D25:D25",
-      "style": "ipo_output",
+      "range": "BO8",
+      "style": "style_012",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "E25:E25",
-      "style": "note_cell",
+      "range": "A9",
+      "style": "style_010",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "A26:A26",
-      "style": "ipo_input",
+      "range": "R9",
+      "style": "style_010",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "B26:B26",
-      "style": "ipo_input",
+      "range": "BO9",
+      "style": "style_012",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "C26:C26",
-      "style": "ipo_process",
+      "range": "A10",
+      "style": "style_010",
       "merge": false,
       "static_text": null
+    },
+    {
+      "range": "B10",
+      "style": "style_008",
+      "merge": false,
+      "static_text": "※修正した部分を"
     },
     {
-      "range": "D26:D26",
-      "style": "ipo_output",
+      "range": "C10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "E26:E26",
-      "style": "note_cell",
+      "range": "D10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "A27:A27",
-      "style": "ipo_input",
+      "range": "E10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "B27:B27",
-      "style": "ipo_input",
+      "range": "F10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "C27:C27",
-      "style": "ipo_process",
+      "range": "G10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
+    },
+    {
+      "range": "H10",
+      "style": "style_008",
+      "merge": false,
+      "static_text": "青文字"
     },
     {
-      "range": "D27:D27",
-      "style": "ipo_output",
+      "range": "I10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "E27:E27",
-      "style": "note_cell",
+      "range": "J10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
+    },
+    {
+      "range": "K10",
+      "style": "style_008",
+      "merge": false,
+      "static_text": "で表記する。"
     },
     {
-      "range": "A28:A28",
-      "style": "ipo_input",
+      "range": "L10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "B28:B28",
-      "style": "ipo_input",
+      "range": "M10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "C28:C28",
-      "style": "ipo_process",
+      "range": "N10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "D28:D28",
-      "style": "ipo_output",
+      "range": "O10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "E28:E28",
-      "style": "note_cell",
+      "range": "P10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "A29:A29",
-      "style": "ipo_input",
+      "range": "Q10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "B29:B29",
-      "style": "ipo_input",
+      "range": "R10",
+      "style": "style_011",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "C29:C29",
-      "style": "ipo_process",
+      "range": "S10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "D29:D29",
-      "style": "ipo_output",
+      "range": "T10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "E29:E29",
-      "style": "note_cell",
+      "range": "U10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "A30:A30",
-      "style": "ipo_input",
+      "range": "V10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "B30:B30",
-      "style": "ipo_input",
+      "range": "W10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "C30:C30",
-      "style": "ipo_process",
+      "range": "X10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "D30:D30",
-      "style": "ipo_output",
+      "range": "Y10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "E30:E30",
-      "style": "note_cell",
+      "range": "Z10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "A31:A31",
-      "style": "ipo_input",
+      "range": "AA10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "B31:B31",
-      "style": "ipo_input",
+      "range": "AB10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "C31:C31",
-      "style": "ipo_process",
+      "range": "AC10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "D31:D31",
-      "style": "ipo_output",
+      "range": "AD10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "E31:E31",
-      "style": "note_cell",
+      "range": "AE10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "A32:A32",
-      "style": "ipo_input",
+      "range": "AF10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "B32:B32",
-      "style": "ipo_input",
+      "range": "AG10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "C32:C32",
-      "style": "ipo_process",
+      "range": "AH10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "D32:D32",
-      "style": "ipo_output",
+      "range": "AI10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
+    },
+    {
+      "range": "AJ10",
+      "style": "style_008",
+      "merge": false,
+      "static_text": "※文中の'△'は、半角スペース１文字を表す記号となります。"
     },
     {
-      "range": "E32:E32",
-      "style": "note_cell",
+      "range": "AK10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "A33:A33",
-      "style": "ipo_input",
+      "range": "AL10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "B33:B33",
-      "style": "ipo_input",
+      "range": "AM10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "C33:C33",
-      "style": "ipo_process",
+      "range": "AN10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "D33:D33",
-      "style": "ipo_output",
+      "range": "AO10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "E33:E33",
-      "style": "note_cell",
+      "range": "AP10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "A34:A34",
-      "style": "ipo_input",
+      "range": "AQ10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "B34:B34",
-      "style": "ipo_input",
+      "range": "AR10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "C34:C34",
-      "style": "ipo_process",
+      "range": "AS10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "D34:D34",
-      "style": "ipo_output",
+      "range": "AT10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "E34:E34",
-      "style": "note_cell",
+      "range": "AU10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "A35:A35",
-      "style": "ipo_input",
+      "range": "AV10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "B35:B35",
-      "style": "ipo_input",
+      "range": "AW10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "C35:C35",
-      "style": "ipo_process",
+      "range": "AX10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "D35:D35",
-      "style": "ipo_output",
+      "range": "AY10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "E35:E35",
-      "style": "note_cell",
+      "range": "AZ10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "A36:A36",
-      "style": "ipo_input",
+      "range": "BA10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "B36:B36",
-      "style": "ipo_input",
+      "range": "BB10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "C36:C36",
-      "style": "ipo_process",
+      "range": "BC10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "D36:D36",
-      "style": "ipo_output",
+      "range": "BD10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "E36:E36",
-      "style": "note_cell",
+      "range": "BE10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "A37:A37",
-      "style": "ipo_input",
+      "range": "BF10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "B37:B37",
-      "style": "ipo_input",
+      "range": "BG10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "C37:C37",
-      "style": "ipo_process",
+      "range": "BH10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "D37:D37",
-      "style": "ipo_output",
+      "range": "BI10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "E37:E37",
-      "style": "note_cell",
+      "range": "BJ10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "A38:A38",
-      "style": "ipo_input",
+      "range": "BK10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "B38:B38",
-      "style": "ipo_input",
+      "range": "BL10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "C38:C38",
-      "style": "ipo_process",
+      "range": "BM10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "D38:D38",
-      "style": "ipo_output",
+      "range": "BN10",
+      "style": "style_008",
       "merge": false,
       "static_text": null
     },
     {
-      "range": "E38:E38",
-      "style": "note_cell",
+      "range": "BO10",
+      "style": "style_013",
       "merge": false,
       "static_text": null
     }
   ],
   "mapping_anchors": {
-    "system_name": "C2",
-    "project_number": "B4",
-    "customer_name": "D4",
-    "screen_id": "B3",
-    "screen_name": "D3",
-    "version": "B5",
-    "create_date": "D5",
-    "requirements": "B6",
-    "ipo_table_start": "A9"
+    "system_name": "J3",
+    "project_number": "S3",
+    "customer_name": "W3",
+    "create_date": "AK3",
+    "author": "AR3",
+    "screen_id": "B7",
+    "screen_name": "F7",
+    "screen_note": "S7",
+    "screen_ver": "F9",
+    "ipo_table_start": "B11"
   }
 }

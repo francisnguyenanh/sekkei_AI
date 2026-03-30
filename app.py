@@ -57,71 +57,276 @@ def _template_summary(name: str, cfg: dict) -> dict:
 
 _TABLE_HINTS = ["_start", "_table", "_data", "table"]
 
+# ── Table column definitions per template type ────────────────────────────────
+_TABLE_COLUMNS = {
+    "menu_table_start": [
+        ("画面番号",                       '例: "①" "②" ... の連番'),
+        ("アイコン№",                      '例: "G03ichiran_02"'),
+        ("リボン表示名",                   'メニューに表示される名称'),
+        ("権限タイプ",                     '例: "D"'),
+        ("画面遷移先（対応シート名）",     '遷移先シート名'),
+        ("画面名",                         '遷移先の画面名称'),
+        ("追加位置 大分類",               'メニュー配置の大分類'),
+        ("追加位置 中分類",               'メニュー配置の中分類'),
+        ("グループ名",                     'グループ名（なければ "－"）'),
+        ("変更区分",                       '"追加" / "変更" / "削除" / "－"'),
+    ],
+    "item_table_start": [
+        ("画面番号",           '"①" "②" ...'),
+        ("項目名",             '項目の表示名'),
+        ("項目種類",           '"ラベル" / "テキスト" / "コンボ" / "ボタン" / "チェック" / "グリッド"'),
+        ("編集",               '"○" / "×" / "－"'),
+        ("文字種",             '"全角" / "半角" / "数字" / "－"'),
+        ("IME",                '"ON" / "OFF" / "－"'),
+        ("入力文字数 全角",    '桁数（数値）または null'),
+        ("入力文字数 半角",    '桁数（数値）または null'),
+        ("入力文字数 整数",    '桁数（数値）または null'),
+        ("入力文字数 小数",    '桁数（数値）または null'),
+        ("重複チェック",       'チェック内容または "－"'),
+        ("初期表示",           '初期値または "－"'),
+        ("書式",               '書式文字列または "－"'),
+        ("変更区分",           '"追加" / "変更" / "削除" / "－"'),
+        ("参照先",             '参照マスタ・画面名または null'),
+        ("備考",               '補足・制約事項または null'),
+    ],
+    "list_table_start": [
+        ("画面番号",                    '"①" "②" ...'),
+        ("項目名（表示名）",           '一覧の列ヘッダー名'),
+        ("伝種区分/廃棄区分",          '例: "1.受入" / "2.出荷" / "全て"'),
+        ("表示区分",                   '"伝票" / "行" / "合計"'),
+        ("必須",                       '"○" / "×" / "－"'),
+        ("出力元画面名（入力）",       'データ取得元の画面名'),
+        ("出力元項目名（入力）",       'データ取得元の項目名'),
+        ("出力元画面名（入力）2",      '第2取得元の画面名'),
+        ("出力元項目名（入力）2",      '第2取得元の項目名'),
+        ("表示備考",                   '表示に関する補足'),
+        ("変更区分",                   '"追加" / "変更" / "削除" / "－"'),
+        ("備考",                       'その他備考'),
+    ],
+    "display_order_start": [
+        ("定義区分",  '定義の種類'),
+        ("表示順",    '表示順序番号（数値）'),
+        ("指定なし",  '"○" / "－"'),
+        ("備考",      '備考'),
+    ],
+    "csv_table_start": [
+        ("項目番号",               '連番（数値）'),
+        ("帳票項目名",             'CSV出力項目名'),
+        ("文字種",                 '"全角" / "半角" / "数字"'),
+        ("変更区分",               '"追加" / "変更" / "削除" / "－"'),
+        ("出力元画面名（入力）",   'データ取得元の画面名'),
+        ("出力元項目名（入力）",   'データ取得元の項目名'),
+        ("出力元画面名（入力）2",  '第2取得元の画面名'),
+        ("出力元項目名（入力）2",  '第2取得元の項目名'),
+    ],
+    "ipo_table_start": [
+        ("入力画面・入力項目 画面",  '入力元の画面名'),
+        ("入力画面・入力項目 項目",  '入力元の項目名'),
+        ("プロセス（処理内容）",
+         '処理ロジックを以下の形式で記述（\\n改行）:\n'
+         '①データ取得元と抽出条件\n②振り分けロジック・優先順位\n'
+         '③集計・計算方法\n④按分ロジック（複数作業者がいる場合）\n'
+         '⑤出力先・表示方法\n※補足・注意事項'),
+        ("出力項目",  '出力先の項目名'),
+        ("備考",      '補足事項'),
+    ],
+    "voucher_table_start": [
+        ("帳票番号",                    '"①" "②" ...'),
+        ("帳票項目名",                  '帳票上の項目名'),
+        ("項目種類",                    '"ラベル" / "データ" / "集計"'),
+        ("文字種",                      '"全角" / "半角" / "数字" / "－"'),
+        ("表示文字数/幅 全角",          '数値または null'),
+        ("表示文字数/幅 半角",          '数値または null'),
+        ("表示文字数/幅 整数",          '数値または null'),
+        ("表示文字数/幅 小数",          '数値または null'),
+        ("フォント サイズ",             '数値または null'),
+        ("フォント 太字",               '"○" / "－"'),
+        ("フォント 下線",               '"○" / "－"'),
+        ("書式",                        '書式文字列または "－"'),
+        ("変更区分",                    '"追加" / "変更" / "削除" / "－"'),
+        ("出力元画面（入力） 画面名",   'データ取得元の画面名'),
+        ("出力元画面（入力） 項目名",   'データ取得元の項目名'),
+    ],
+}
+
+# ── single_value field descriptions ──────────────────────────────────────────
+_SINGLE_FIELD_DESC = {
+    "system_name":      '固定値 → "環境将軍R(A1)"',
+    "project_number":   '固定値 → 20230927  ※整数、引用符なし',
+    "customer_name":    '固定値 → "株式会社ISC"',
+    "screen_id":        '画面ID（例: "G055"）',
+    "screen_name":      '画面名・帳票名',
+    "screen_ver":       '画面バージョン（例: "2.33.6"）',
+    "version":          '版数（例: "初回" / "更新"）。なければ "初回"',
+    "create_date":      '作成日 → "YYYY-MM-DD" 形式',
+    "author":           '作成者名',
+    "csv_name":         'CSV出力ファイル名（CSV設計書のみ）',
+    "requirements":     (
+        'requirements は文字列（配列ではない）。\\n で改行。形式:\n'
+        '■{機能名}　{画面種別}\n'
+        '①{セクション名}\n　・{項目1}\n　・{項目2}\n'
+        '②{セクション名}\n　・{項目1}'
+    ),
+}
+
 def _build_ai_prompt(template_name: str, cfg: dict) -> str:
     anchors = cfg.get("mapping_anchors", {})
+    sheet_name = cfg.get("sheet_name", "")
     single_keys = {k: v for k, v in anchors.items() if not any(t in k for t in _TABLE_HINTS)}
     table_keys  = {k: v for k, v in anchors.items() if     any(t in k for t in _TABLE_HINTS)}
 
-    single_schema = "\n".join(
-        f'    "{k}": "<value>",  // → cell {v}' for k, v in single_keys.items()
-    )
-    if table_keys:
-        table_lines = []
-        for k, v in table_keys.items():
-            table_lines.append(
-                f'    "{k}": [  // starts at cell {v}\n'
-                f'      ["col1_header", "col2_header", ...],  // header row\n'
-                f'      ["row1_val1",  "row1_val2",  ...]     // data rows...\n'
+    # ── Build single_values schema block ─────────────────────────────────────
+    sv_lines = []
+    for k in single_keys:
+        desc = _SINGLE_FIELD_DESC.get(k, f"→ cell {anchors[k]}")
+        sv_lines.append(f'    "{k}": <value>,  // {desc}')
+    single_schema = "\n".join(sv_lines) if sv_lines else '    // (no single_values in this template)'
+
+    # ── Build table_data schema block + column reference ─────────────────────
+    table_schema_lines = []
+    table_col_reference = []
+    for tk in table_keys:
+        cell = anchors[tk]
+        col_defs = _TABLE_COLUMNS.get(tk)
+        if col_defs:
+            headers = json.dumps([c[0] for c in col_defs], ensure_ascii=False)
+            col_ref_block = "\n".join(
+                f"  列{i}: {c[0]} — {c[1]}" for i, c in enumerate(col_defs)
+            )
+            table_col_reference.append(
+                f"### `{tk}` (starts at cell {cell})  — {len(col_defs)}列\n{col_ref_block}"
+            )
+            table_schema_lines.append(
+                f'    "{tk}": [  // starts at cell {cell}\n'
+                f'      {headers},  // ← Row 0: header (MUST match exactly)\n'
+                f'      [/* row 1 values, {len(col_defs)} columns */],\n'
+                f'      [/* row 2 values, {len(col_defs)} columns */]\n'
                 f'    ],'
             )
-        table_schema = "\n".join(table_lines)
-    else:
-        table_schema = ""
+        else:
+            table_schema_lines.append(
+                f'    "{tk}": [  // starts at cell {cell}\n'
+                f'      ["col1_header", "col2_header", ...],\n'
+                f'      ["row1_val1",  "row1_val2",  ...]\n'
+                f'    ],'
+            )
+            table_col_reference.append(f"### `{tk}` (starts at cell {cell})\n  (カスタムテーブル — 適切な列を定義してください)")
 
-    field_ref = "\n".join(f"- `{k}` → cell {v}" for k, v in anchors.items())
+    table_schema = "\n".join(table_schema_lines) if table_schema_lines else '    // (no table_data in this template)'
+    col_ref_section = "\n\n".join(table_col_reference) if table_col_reference else "(テーブルデータなし)"
 
-    return f"""You are a data-fill assistant for an Excel generation system.
+    # ── Build example ─────────────────────────────────────────────────────────
+    example_sv: dict = {}
+    for k in single_keys:
+        if k == "system_name":       example_sv[k] = "環境将軍R(A1)"
+        elif k == "project_number":  example_sv[k] = 20230927
+        elif k == "customer_name":   example_sv[k] = "株式会社ISC"
+        elif k == "version":         example_sv[k] = "初回"
+        elif k == "create_date":     example_sv[k] = "2025-04-19"
+        elif k == "screen_id":       example_sv[k] = "XXXX"
+        elif k == "screen_name":     example_sv[k] = sheet_name or "画面名"
+        elif k == "screen_ver":      example_sv[k] = "1.0.0"
+        elif k == "requirements":    example_sv[k] = "■画面名　機能名\n①抽出条件\n　・条件1\n　・条件2"
+        else:                        example_sv[k] = f"<{k}の値>"
 
-## Your task
-Generate a JSON object that fills data into the Excel template named "{template_name}" (sheet: "{cfg.get('sheet_name', '')}").
+    example_td: dict = {}
+    for tk in table_keys:
+        col_defs = _TABLE_COLUMNS.get(tk)
+        if col_defs:
+            example_td[tk] = [
+                [c[0] for c in col_defs],
+                ["<値>" if "数値" not in c[1] and "null" not in c[1] else None for c in col_defs],
+            ]
+        else:
+            example_td[tk] = [["col1", "col2"], ["val1", "val2"]]
 
-## Output format (STRICT — output ONLY valid JSON, no markdown, no explanation)
+    example_json = json.dumps(
+        {"single_values": example_sv, "table_data": example_td},
+        ensure_ascii=False, indent=2
+    )
+
+    return f"""あなたは日本語ソフトウェア設計書（カスタマイズ設計書）の**ロジックデータ作成AI**です。
+提供された仕様書・要件書を読み取り、**`logic` JSONのみを出力**してください。
+ExcelファイルやHTMLは一切出力しません。
+
+---
+
+## コンテキスト
+
+システム：**環境将軍R(A1)**（株式会社ISC、案件番号：20230927）
+テンプレート名：**{template_name}**（シート：{sheet_name}）
+
+あなたが出力する `logic` JSON は、システム側でテンプレートと合成されてExcelに変換されます。
+
+---
+
+## 出力スキーマ（厳守）
+
+以下のJSONのみを出力してください。コードブロック・説明文・前置き・後書きは一切不要。
+
 {{
   "single_values": {{
 {single_schema}
   }},
   "table_data": {{
-{table_schema if table_schema else '    // (no table data in this template)'}
+{table_schema}
   }}
 }}
 
-## Rules
-1. Output ONLY the JSON object above. Do NOT wrap in ```json``` or add any explanation.
-2. Replace every "<value>" with the actual data for that field.
-3. For table_data: each entry is an array-of-arrays. Each inner array is one Excel row.
-   The number of columns per row must be consistent throughout the table.
-4. All values must be JSON primitives: string, number, boolean, or null.
-5. Date values: use "YYYY-MM-DD" format strings.
-6. Number values: use JSON numbers (no quotes) for pure numeric cells.
-7. Do NOT add keys that are not listed above — they will be ignored or cause errors.
+---
 
-## Field reference
-{field_ref}
+## single_values の入力ルール
 
-## Example of valid output (2 single values + 1 table):
-{{
-  "single_values": {{
-    "screen_id": "3075",
-    "screen_name": "メニュー"
-  }},
-  "table_data": {{
-    "menu_table_start": [
-      ["画面番号", "アイコン№", "リボン表示名"],
-      ["3075", "001", "メインメニュー"]
-    ]
-  }}
-}}
+- `system_name` → 固定値 `"環境将軍R(A1)"`
+- `project_number` → 固定値 `20230927`（整数、引用符なし）
+- `customer_name` → 固定値 `"株式会社ISC"`
+- `version` → なければ `"初回"`
+- `create_date` → `"YYYY-MM-DD"` 形式
+- `requirements` → 文字列（配列ではない）。`\\n` で改行。形式：
+    ■{{機能名}}　{{画面種別}}
+    ①{{セクション名}}
+    　・{{項目1}}
+    ②{{セクション名}}
+    　・{{項目1}}
+
+---
+
+## table_data の列定義
+
+{col_ref_section}
+
+---
+
+## 値の型ルール（厳守）
+
+| 値の種類 | 正しい書き方 | ❌ 間違い |
+|---------|------------|---------|
+| 数値 | `15000` | `"15000"` |
+| 案件番号 | `20230927` | `"20230927"` |
+| 日付 | `"2025-04-19"` | `"2025/04/19"` |
+| 空欄 | `null` | `""` / `"-"` |
+| フラグ（該当なし） | `"－"` | `"-"` / `null` |
+| 改行 | `\\n`（文字列内） | 配列 |
+| boolean的フラグ | `"○"` または `"－"` | `true` / `false` |
+
+---
+
+## 出力例
+
+{example_json}
+
+---
+
+## 出力前の自己チェック
+
+1. `mapping_anchors` にないキーを追加していないか
+2. 全テーブル行の列数がヘッダー行と一致しているか
+3. `project_number` が整数 `20230927`（引用符なし）か
+4. 空セルが `null`（`""` でも `"-"` でもない）か
+5. `requirements` が文字列（配列ではない）か
+6. 出力がJSON **のみ**（コードブロックや説明文がない）か
 """
+
 
 @app.errorhandler(413)
 def request_entity_too_large(e):

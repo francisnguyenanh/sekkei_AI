@@ -1,0 +1,59 @@
+{
+  "template": {
+    "sheet_name": "Screen 3075",
+    "global_config": {
+      "column_widths": {
+        "A": 5.0,
+        "B": 15.0,
+        "C": 20.0
+      }
+    },
+    "styles": {
+      "header_blue": {
+        "fill": "0070C0",
+        "font_color": "FFFFFF",
+        "font_size": 11.0,
+        "bold": true,
+        "align_h": "center",
+        "border": "all_thin"
+      },
+      "meta_yellow": {
+        "fill": "FFF2CC",
+        "font_color": "000000",
+        "font_size": 9.0,
+        "bold": true,
+        "border": "all_thin"
+      }
+    },
+    "layout_blocks": [
+      {
+        "range": "A1:C1",
+        "style": "header_blue",
+        "merge": true,
+        "static_text": "項目定義書_画面"
+      },
+      {
+        "range": "A2:C2",
+        "style": "meta_yellow"
+      }
+    ],
+    "mapping_anchors": {
+      "screen_id": "B2",
+      "screen_name": "C2",
+      "table_items": "A4"
+    }
+  },
+  "logic": {
+    "single_values": {
+      "screen_id": "3075",
+      "screen_name": "メニュー"
+    },
+    "table_data": {
+      "table_items": [
+        ["ID", "Tên Hạng mục", "Ghi chú"],
+        ["1", "Button Login", "Trigger Auth"],
+        ["2", "Text Username", "Nhập mã số"]
+      ]
+    }
+  }
+}

@@ -1,10 +1,12 @@
 import re
 import io
+import json
 import time
 import uuid
 import logging
 import traceback
 import openpyxl
+from pathlib import Path
 from flask import Flask, request, jsonify, send_file, render_template
 from pydantic import ValidationError
 from schemas.models import parse_request, parse_multi_request, TemplateConfig
@@ -19,8 +21,30 @@ logger = logging.getLogger(__name__)
 app = Flask(__name__)
 app.config['MAX_CONTENT_LENGTH'] = 20 * 1024 * 1024 # 20MB
 
-# ── In-memory template store ──────────────────────────────────────────────────
+# ── Persistent template store ─────────────────────────────────────────────────
+TEMPLATE_DIR = Path(__file__).parent / 'template_store'
+TEMPLATE_DIR.mkdir(exist_ok=True)
+
 TEMPLATE_STORE: dict = {}
+
+def _load_templates_from_disk():
+    """Load all .json files from TEMPLATE_DIR into TEMPLATE_STORE on startup."""
+    for f in TEMPLATE_DIR.glob('*.json'):
+        try:
+            data = json.loads(f.read_text(encoding='utf-8'))
+            TEMPLATE_STORE[f.stem] = data
+            logger.info(f"Loaded template '{f.stem}' from disk")
+        except Exception as e:
+            logger.warning(f"Failed to load template '{f.name}': {e}")
+
+def _save_template_to_disk(name: str, cfg: dict):
+    path = TEMPLATE_DIR / f'{name}.json'
+    path.write_text(json.dumps(cfg, ensure_ascii=False, indent=2), encoding='utf-8')
+
+def _delete_template_from_disk(name: str):
+    path = TEMPLATE_DIR / f'{name}.json'
+    if path.exists():
+        path.unlink()
 
 def _template_summary(name: str, cfg: dict) -> dict:
     """Return lightweight summary for list endpoints."""
@@ -241,7 +265,8 @@ def import_template():
     except ValidationError as e:
         return jsonify({"error": "Validation Error", "details": e.errors()}), 422
     TEMPLATE_STORE[name] = tpl_raw
-    logger.info(f"[ReqID: {req_id}] Template '{name}' stored")
+    _save_template_to_disk(name, tpl_raw)
+    logger.info(f"[ReqID: {req_id}] Template '{name}' stored to disk")
     return jsonify(_template_summary(name, tpl_raw)), 200
 
 @app.route('/api/v1/templates/<template_name>', methods=['GET'])
@@ -256,7 +281,20 @@ def delete_template(template_name: str):
     if template_name not in TEMPLATE_STORE:
         return jsonify({"error": f"Template '{template_name}' not found"}), 404
     del TEMPLATE_STORE[template_name]
+    _delete_template_from_disk(template_name)
     return jsonify({"status": "deleted", "template_name": template_name}), 200
+
+@app.route('/api/v1/templates/<template_name>/download', methods=['GET'])
+def download_template(template_name: str):
+    path = TEMPLATE_DIR / f'{template_name}.json'
+    if not path.exists():
+        return jsonify({"error": f"Template '{template_name}' not found on disk"}), 404
+    return send_file(
+        path,
+        mimetype='application/json',
+        as_attachment=True,
+        download_name=f'{template_name}.json'
+    )
 
 # ── AI PROMPT ROUTE ───────────────────────────────────────────────────────────
 
@@ -273,6 +311,8 @@ def get_ai_prompt(template_name: str):
         "sheet_name": cfg.get("sheet_name", ""),
         "anchor_keys": list(anchors.keys()),
     }), 200
+
+_load_templates_from_disk()
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5016, debug=True)

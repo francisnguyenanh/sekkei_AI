@@ -725,9 +725,15 @@ async function refreshTemplateList() {
         <td class="fw-semibold">${t.template_name}</td>
         <td>${t.sheet_name}</td>
         <td>${badges}</td>
-        <td><button class="btn btn-sm btn-outline-danger" onclick="deleteTemplate('${t.template_name}')">
-          <i class="bi bi-trash"></i>
-        </button></td>
+        <td class="d-flex gap-1">
+          <a href="/api/v1/templates/${encodeURIComponent(t.template_name)}/download"
+             class="btn btn-sm btn-outline-success" title="Tải file JSON" download>
+            <i class="bi bi-download"></i>
+          </a>
+          <button class="btn btn-sm btn-outline-danger" onclick="deleteTemplate('${t.template_name}')" title="Xóa">
+            <i class="bi bi-trash"></i>
+          </button>
+        </td>
       </tr>`;
     });
     html += '</tbody></table>';
